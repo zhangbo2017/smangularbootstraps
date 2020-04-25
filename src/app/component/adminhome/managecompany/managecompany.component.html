@@ -1,0 +1,217 @@
+<div class="content" role="main">
+  <div class="row align-items-center justify-content-center">
+    <h2><strong>Manage Company</strong></h2>
+  </div>
+</div>  
+
+<div class="input-group">
+  <div class="input-group-prepend">
+    <label class="input-group-text">Company Name:</label>
+    <!-- <span class="input-group-text" id="basic-addon1">@</span> -->
+  </div>
+  <!-- <label>Company Name:</label> -->
+    <input type="text" id="listSearch" class="form-control" placeholder="Search" [(ngModel)]="search">
+</div>
+
+<form class="form-inline">
+<div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+          <th>Company Code</th>
+          <th>Company Name</th>
+          <th>Turnover($)</th>
+          <th>CEO</th>
+          <th>Board Of Directors</th>
+          <th>Listed in SE</th>
+          <th>Sector Name</th>
+          <th>Brief Writeup</th>
+          <th>Stock Code</th>
+          <th>Company Status</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of companies | searchPipe:'companyName':search; let i = index" [attr.data-index]="i">
+          <!-- <tr *ngFor="let item of companies; let i = index"> -->
+          <td>{{item.companyCode}}</td>
+          <td>{{item.companyName}}</td>
+          <td>{{item.turnover}}</td>
+          <td>{{item.ceo}}</td>
+          <td>{{item.boardofdirectors}}</td>
+          <td>{{item.listedinskex}}</td>
+          <td>{{item.sectorName}}</td>
+          <td>{{item.brifewriteup}}</td>
+          <td>{{item.stockCode}}</td>
+          <td>{{item.companyStatus}}</td>
+          <td><input class="btn btn-sm btn-outline-secondary" type="button" value="Edit" data-target="#update-btn" (click)="openedit(content,i)" /></td>
+          <ng-template #content let-modal id="update-btn">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modal-basic-title">Update Company</h4>
+              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                <span><label for="companyCode">Company Code</label>
+                <input type="text" class="form-control" id="companyCode" name="companyCode" [(ngModel)]="companyForm.companyCode" #companyCode="ngModel"></span>
+            </div>
+            <div class="form-group">
+                <span><label for="companyName">Comany Name</label>
+                <input type="text" class="form-control" id="companyName" name="companyName" [(ngModel)]="companyForm.companyName" #companyName="ngModel"></span>
+            </div>
+            <div class="form-group">
+                <span><label for="turnover">Turnover($)</label>
+                <input type="text" class="form-control" id="turnover" name="turnover" [(ngModel)]="companyForm.turnover" #turnover="ngModel"></span>
+            </div>
+            <div class="form-group">
+                <span><label for="ceo">CEO</label>
+                <input type="text" class="form-control" id="ceo" name="ceo" [(ngModel)]="companyForm.ceo" #ceo="ngModel"></span>
+            </div>
+            <div class="form-group">
+                <span><label for="boardofdirectors">Board Of Directors</label>
+                <input type="text" class="form-control" id="boardofdirectors" name="boardofdirectors" [(ngModel)]="companyForm.boardofdirectors" #boardofdirectors="ngModel"></span>
+            </div>
+            <div class="form-group">
+              <!-- <span><label for="listedinskex">Listed in Stock Exchange</label>
+              <input type="text" class="form-control" id="listedinskex" name="listedinskex" [(ngModel)]="companyForm.listedinskex" #listedinskex="ngModel"></span> -->
+              <span><label for="listedinskex">Listed in Stock Exchange</label>
+                <!-- <input type="text" class="form-control" id="listedinskex" name="listedinskex" [(ngModel)]="company.listedinskex" #listedinskex="ngModel"></span> -->
+                <select class="form-control" id="listedinskex" name="listedinskex" [(ngModel)]="companyForm.listedinskex" #listedinskex="ngModel">
+                  <option>Yes</option>
+                  <option>No</option>
+                </select>
+              </span>
+            </div>
+            <div class="form-group">
+              <span><label for="sectorName">Sector Name</label>
+              <input type="text" class="form-control" id="sectorName" name="sectorName" [(ngModel)]="companyForm.sectorName" #sectorName="ngModel"></span>
+            </div>
+            <div class="form-group">
+              <span><label for="brifewriteup">Brife Writeup</label>
+              <input type="text" class="form-control" id="brifewriteup" name="brifewriteup" [(ngModel)]="companyForm.brifewriteup" #brifewriteup="ngModel"></span>
+            </div>
+            <div class="form-group">
+              <span><label for="stockCode">Stock Code</label>
+              <input type="text" class="form-control" id="stockCode" name="stockCode" [(ngModel)]="companyForm.stockCode" #stockCode="ngModel"></span>
+            </div>
+            <div class="form-group">
+              <span><label for="companyStatus">Company Status</label>
+                <select class="form-control" id="companyStatus" name="companyStatus" [(ngModel)]="companyForm.companyStatus" #companyStatus="ngModel">
+                  <option>Deactivated</option>
+                  <option>Activated</option>
+                </select>
+              </span>
+            </div>
+            </div>
+            <div class="modal-footer">
+              <input type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" value= "Cancel" />
+              <input type="button" class="btn btn-outline-dark" (click)="update()" value="Submit"/>
+            </div>
+          </ng-template>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <input class="btn btn-primary" type="button" value="Add" (click)="open(contents)" data-target="#add-btn"/>
+
+    <!-- add start -->
+    <ng-template #contents let-modal id="add-btn">
+      <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ADD COMPANY</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>Company Information</h4>
+        <div class="form-group">
+            <span><label for="companyCode">Company Code</label>
+            <input type="text" class="form-control" id="companyCode" name="companyCode" [(ngModel)]="company.companyCode" #companyCode="ngModel"></span>
+        </div>
+        <div class="form-group">
+            <span><label for="companyName">Comany Name</label>
+            <input type="text" class="form-control" id="companyName" name="companyName" [(ngModel)]="company.companyName" #companyName="ngModel"></span>
+        </div>
+        <div class="form-group">
+            <span><label for="turnover">Turnover($)</label>
+            <input type="text" class="form-control" id="turnover" name="turnover" [(ngModel)]="company.turnover" #turnover="ngModel"></span>
+        </div>
+        <div class="form-group">
+            <span><label for="ceo">CEO</label>
+            <input type="text" class="form-control" id="ceo" name="ceo" [(ngModel)]="company.ceo" #ceo="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="boardofdirectors">Board Of Directors</label>
+          <input type="text" class="form-control" id="boardofdirectors" name="boardofdirectors" [(ngModel)]="company.boardofdirectors" #boardofdirectors="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="listedinskex">Listed in Stock Exchange</label>
+          <!-- <input type="text" class="form-control" id="listedinskex" name="listedinskex" [(ngModel)]="company.listedinskex" #listedinskex="ngModel"></span> -->
+            <select class="form-control" id="listedinskex" name="listedinskex" [(ngModel)]="company.listedinskex" #listedinskex="ngModel">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </span>
+        </div>
+        <div class="form-group">
+          <span><label for="sectorName">Sector Name</label>
+          <input type="text" class="form-control" id="sectorName" name="sectorName" [(ngModel)]="company.sectorName" #sectorName="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="brifewriteup">Brife Writeup</label>
+          <input type="text" class="form-control" id="brifewriteup" name="brifewriteup" [(ngModel)]="company.brifewriteup" #brifewriteup="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="stockCode">Stock Code</label>
+          <input type="text" class="form-control" id="stockCode" name="stockCode" [(ngModel)]="company.stockCode" #stockCode="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="companyStatus">Company Status</label>
+            <select class="form-control" id="companyStatus" name="companyStatus" [(ngModel)]="company.companyStatus" #companyStatus="ngModel">
+              <option>Deactivated</option>
+              <option>Activated</option>
+            </select>
+          </span>
+        </div>
+        <h4>IPO Information</h4>
+        <!-- start for IPO Add-->
+        <div class="form-group">
+          <span><label for="stockExchange">Stock Exchange</label>
+          <input type="text" class="form-control" id="stockExchange" name="stockExchange" [(ngModel)]="ipodetails.stockExchange" #stockExchange="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="pricePerShare">Price PerShare($)</label>
+          <input type="text" class="form-control" id="pricePerShare" name="pricePerShare" [(ngModel)]="ipodetails.pricePerShare" #pricePerShare="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="totalNumber">Total Number</label>
+          <input type="text" class="form-control" id="totalNumber" name="totalNumber" [(ngModel)]="ipodetails.totalNumber" #totalNumber="ngModel"></span>
+        </div>
+        <div class="form-group">
+          <span><label for="openDateTime">Open Date Time (required*)</label>
+          <!-- <input type="datetime" class="form-control" id="openDateTime" name="openDateTime" [(ngModel)]="ipodetails.openDateTime" #openDateTime="ngModel" placeholder="yyyy-MM-dd HH:mm:ss" required></span> -->
+          <input type="text" class="form-control" id="openDateTime" name="openDateTime" [(ngModel)]="ipodetails.openDateTime" #openDateTime="ngModel" placeholder="yyyy-MM-dd HH:mm:ss" required></span>
+        </div>
+        <!-- <div *ngIf="openDateTime.invalid && (openDateTime.dirty || openDateTime.touched)" class="alert alert-danger">
+          <div *ngIf="openDateTime.errors.required">
+            Open date time is required.
+          </div>
+        </div> -->
+        <div class="form-group">
+          <span><label for="ipoRemarks">IPO Remarks</label>
+          <input type="text" class="form-control" id="ipoRemarks" name="ipoRemarks" [(ngModel)]="ipodetails.ipoRemarks" #ipoRemarks="ngModel"></span>
+        </div>
+        <!-- end for IPO Add -->
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')" value= "Cancel" />
+        <input type="button" class="btn btn-outline-dark" (click)="addall()" value="Submit"/>
+      </div>
+    </ng-template>
+    <!-- add end -->
+
+  </form>
+

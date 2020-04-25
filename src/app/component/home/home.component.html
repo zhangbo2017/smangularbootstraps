@@ -1,0 +1,50 @@
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Stock Market</a>
+    <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" routerLink="/logout" routerLinkActive="router-link-active" >Sign out</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home/ipolist']" routerLinkActive="active">
+                <span data-feather="users"></span>
+                IPOS
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home/comparecompany']" routerLinkActive="active" >
+                <span data-feather="bar-chart-2"></span>
+                Compare Company
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home/comparesector']" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Company Sector
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" [routerLink]="['/home/changepassword']" routerLinkActive="active">
+                <span data-feather="layers"></span>
+                Change Password
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <router-outlet></router-outlet>
+      </main>
+ 
+    </div>
+  </div>
+  

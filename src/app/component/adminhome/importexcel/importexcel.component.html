@@ -1,0 +1,22 @@
+
+  <div class="content" role="main">
+    <div class="row align-items-center justify-content-center">
+      <h2><strong>IMPORT DATA</strong></h2>
+    </div>
+  </div>  
+  <div class="input-group">
+    <input type="text" class="form-control" [value]="selectFileName" aria-label="Recipient's username with two button addons" aria-describedby="button-addon4">
+    <div class="input-group-append" id="button-addon4">
+      <input type="file" id="file" accept=".xlsx" ng2FileSelect [uploader]="uploader" style="filter:alpha(opacity=0);opacity:0;width: 0;height: 0;" (change)="selectedFileOnChanged($event)" />
+      <button class="btn btn-outline-secondary" type="button" (click)="selectFile()">Browse</button>
+      <button class="btn btn-outline-secondary" type="button" (click)="uploadFile()" [disabled]="btnUploadIsDisabled">Upload</button>      
+    </div>
+  </div>
+  <div style="margin-left: 70%;margin-top: 1%;">
+    <a href="assets/stockmarket_sample_data.xlsx" >click here to download sample excel file</a>
+  </div>
+
+
+  
+
+
