@@ -8,8 +8,6 @@ const SECONDARYURL_SECTOR = '/search/comparison/sector/';
 
 const SECTORURL = BSEURL + SECONDARYURL_SECTOR;
 
-declare let laydate;
-
 @Component({
   selector: 'app-comparesector',
   templateUrl: './comparesector.component.html',
@@ -120,22 +118,6 @@ export class ComparesectorComponent implements OnInit {
       document.getElementById('selectTimeDiv').style.display = 'block';
     }
   }
-
-  // selectperiod(index) {
-  //   this.currentTime = new Date();
-  //   if (index === 'last3') {
-  //     this.startTime = this.TimeFormater(this.currentTime, 3);
-  //     this.endTime = this.TimeFormater(this.currentTime, 0);
-  //   }
-  //   if (index === 'last5') {
-  //     this.startTime = this.TimeFormater(this.currentTime, 5);
-  //     this.endTime = this.TimeFormater(this.currentTime, 0);
-  //   }
-  //   if (index === 'last10') {
-  //     this.startTime = this.TimeFormater(this.currentTime, 10);
-  //     this.endTime = this.TimeFormater(this.currentTime, 0);
-  //   }
-  // }
 
   selectperiod(index) {
     this.currentTime = new Date();

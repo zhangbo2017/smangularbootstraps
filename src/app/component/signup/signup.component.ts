@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Signup } from './signup';
 import { SignupService } from '../signup/signup.service';
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',

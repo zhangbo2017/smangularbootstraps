@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ComparesectorComponent } from './comparesector.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ComparesectorComponent', () => {
   let component: ComparesectorComponent;
@@ -8,6 +10,7 @@ describe('ComparesectorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[RouterTestingModule.withRoutes([]),HttpClientTestingModule],
       declarations: [ ComparesectorComponent ]
     })
     .compileComponents();

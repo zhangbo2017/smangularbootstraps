@@ -1,12 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ExchangesService } from './exchanges.service';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ExchangesService', () => {
   let service: ExchangesService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports:[RouterTestingModule.withRoutes([]),HttpClientTestingModule]
+    });
     service = TestBed.inject(ExchangesService);
   });
 

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ImportexcelComponent } from './importexcel.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 
 describe('ImportexcelComponent', () => {
   let component: ImportexcelComponent;
@@ -8,6 +11,7 @@ describe('ImportexcelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[RouterTestingModule.withRoutes([]),HttpClientTestingModule],
       declarations: [ ImportexcelComponent ]
     })
     .compileComponents();

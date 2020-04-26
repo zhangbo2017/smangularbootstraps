@@ -24,7 +24,7 @@ export class LogoutComponent implements OnInit {
   }
 
   getFirstData(returnedObj: any){
-    // alert(returnedObj.msg);
+    alert(returnedObj.msg);
     if(returnedObj.status==200){
       this.router.navigateByUrl('/login');
     }

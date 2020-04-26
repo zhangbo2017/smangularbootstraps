@@ -3,8 +3,6 @@ import {IPO} from './ipo';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { IposerviceService } from './iposervice.service';
 
-declare let laydate;
-
 @Component({
   selector: 'app-updateipodetails',
   templateUrl: './updateipodetails.component.html',

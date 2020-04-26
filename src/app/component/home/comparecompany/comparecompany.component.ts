@@ -11,7 +11,6 @@ const SECONDARYURL_SECTORBYCOMPANY = '/search/comparison/sectorAndCompany/';
 const COMPANYURL = BSEURL + SECONDARYURL_COMPANY;
 const SECTORBYCOMPANY = BSEURL + SECONDARYURL_SECTORBYCOMPANY;
 
-declare let laydate;
 
 @Component({
   selector: 'app-comparecompany',
@@ -471,22 +470,6 @@ mergeCompanyData() {
 }
 
 ngOnInit() {
-    // laydate.render({
-    //     elem: '#startTime',
-    //     type: 'datetime',
-    //     theme: '#4DC6FD',
-    //     done: (value, date, endDate) => {
-    //         this.startTime = value;
-    //     }
-    // });
-    // laydate.render({
-    //     elem: '#endTime',
-    //     type: 'datetime',
-    //     theme: '#4DC6FD',
-    //     done: (value, date, endDate) => {
-    //         this.endTime = value;
-    //     }
-    // });
 }
   
 

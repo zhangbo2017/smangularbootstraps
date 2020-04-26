@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router'; 
 import { password } from '../changeadminpassword/password';
 import { ChangepasswordService } from './changepassword.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-changeadminpassword',
@@ -19,7 +20,7 @@ export class ChangeadminpasswordComponent implements OnInit {
     private changepwdService: ChangepasswordService
     ) {}
 
-    submitNewPW() {
+    submitNewPW(form:NgForm) {
       this.changepwdService.updatepw(this.passwordcg).subscribe(
         res => {
           if (res.data.msg === 200) {

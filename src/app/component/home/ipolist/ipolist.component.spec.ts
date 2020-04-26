@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IpolistComponent } from './ipolist.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('IpolistComponent', () => {
   let component: IpolistComponent;
@@ -8,6 +10,7 @@ describe('IpolistComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports:[RouterTestingModule.withRoutes([]),HttpClientTestingModule],
       declarations: [ IpolistComponent ]
     })
     .compileComponents();

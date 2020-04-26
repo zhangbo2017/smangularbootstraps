@@ -17,7 +17,7 @@ export class CompanyService {
  readonly companyUrl = LocalURL.serverURL + 'smccompany/admin/manage/company';
  readonly currentcompanyUrl = LocalURL.serverURL + 'smcprice/search/company_id';
   
-constructor(private http: HttpClient,public handleErrorService: HandleErrorService) { }
+constructor(public http: HttpClient,public handleErrorService: HandleErrorService) { }
 
   /* GET Companys from the server */
   // getCompanies(): Observable<Company[]> { // memory测试用
