@@ -19,7 +19,7 @@ export class LoginService {
 
   constructor(private http: HttpClient,public handleErrorService: HandleErrorService) { }
 
-    readonly loginURL = LocalURL.serverURL + 'smcuser/login';
+    readonly loginURL = LocalURL.serverURL + 'login';
 
     // Observable<any> 定义返回类型
     public findUser(loginForm: Login): Observable<any> {
