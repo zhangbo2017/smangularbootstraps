@@ -4,6 +4,7 @@ pipeline {
     DOCKERHUBNAME = "920018225"
   }
   stages {
+    
     stage('docker build & push image on build docker/build server') {
       steps {
         // docker stop/rm older containers: remove only there are containers found
