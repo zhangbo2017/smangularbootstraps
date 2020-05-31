@@ -4,7 +4,6 @@ pipeline {
     DOCKERHUBNAME = "920018225"
   }
   stages {
-    
     stage('docker build & push image on build docker/build server') {
       steps {
         // docker stop/rm older containers: remove only there are containers found
@@ -20,12 +19,12 @@ pipeline {
         
         // docker rmi old images before build: remove only there are images found
         script {
-          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/smc-angular-bootstrap*") != ""
+          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/smc-angular-nginx*") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
-            // sh 'docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-bootstrap* | xargs docker image rm -f'
-            // sh 'docker image rm -f $(docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-bootstrap*)'
-            sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/smc-angular-bootstrap*)'
+            // sh 'docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-nginx* | xargs docker image rm -f'
+            // sh 'docker image rm -f $(docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-nginx*)'
+            sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/smc-angular-nginx*)'
           }
         }
 
@@ -33,7 +32,7 @@ pipeline {
         // script {
           // docker.withRegistry(registry-server, Credentials_ID)
           // docker.withRegistry('https://index.docker.io/v1/', 'DockerHub_${DOCKERHUBNAME}') {
-          //   def customImage = docker.build("${DOCKERHUBNAME}/smc-angular-bootstrap:latest", '-f Dockerfile .')
+          //   def customImage = docker.build("${DOCKERHUBNAME}/smc-angular-nginx:latest", '-f Dockerfile .')
           //   /* Push the image to the docker hub Registry */
           //   customImage.push('latest')
           // }
@@ -41,8 +40,8 @@ pipeline {
         // soution 2: it's good to use without any expose..
         withCredentials([usernamePassword(credentialsId: "DockerHub_${DOCKERHUBNAME}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh 'docker login -u $USERNAME -p $PASSWORD'
-          sh 'docker image build -t ${DOCKERHUBNAME}/smc-angular-bootstrap:latest .'
-          sh 'docker push ${DOCKERHUBNAME}/smc-angular-bootstrap:latest'
+          sh 'docker image build -t ${DOCKERHUBNAME}/smc-angular-nginx:latest .'
+          sh 'docker push ${DOCKERHUBNAME}/smc-angular-nginx:latest'
         }
       }
     }
@@ -64,20 +63,20 @@ pipeline {
 
         // docker rmi old images: remove only there are images found
         script {
-          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/smc-angular-bootstrap*") != ""
+          def REMOVE_FLAG = sh(returnStdout: true, script: "docker image ls -q *${DOCKERHUBNAME}/smc-angular-nginx*") != ""
           echo "REMOVE_FLAG: ${REMOVE_FLAG}"
           if(REMOVE_FLAG){
-            // sh 'docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-bootstrap* | xargs docker image rm -f'
-            // sh 'docker image rm -f $(docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-bootstrap*)'
-            // sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/smc-angular-bootstrap*)'
+            // sh 'docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-nginx* | xargs docker image rm -f'
+            // sh 'docker image rm -f $(docker image ls --format {{.ID}} *${DOCKERHUBNAME}/smc-angular-nginx*)'
+            // sh 'docker image rm -f $(docker image ls -q *${DOCKERHUBNAME}/smc-angular-nginx*)'
           }
         }
 
         // docker pull image from docker hub registry
-        // sh 'docker pull ${DOCKERHUBNAME}/smc-angular-bootstrap'
+        // sh 'docker pull ${DOCKERHUBNAME}/smc-angular-nginx'
 
         // docker run images
-        sh 'docker run -d -p 80:80 --network host --name smc-angular-app ${DOCKERHUBNAME}/smc-angular-bootstrap'
+        sh 'docker run -d -p 80:80 --network host --name smc-angular-app ${DOCKERHUBNAME}/smc-angular-nginx'
       }
     }
 
