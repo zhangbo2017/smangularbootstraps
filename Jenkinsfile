@@ -4,6 +4,21 @@ pipeline {
     DOCKERHUBNAME = "920018225"
   }
   stages {
+     stage('Build') {
+      agent {
+        docker {
+          image 'node' 
+          args '-p 3000:3000'
+        }
+      }
+      steps {
+        echo 'start npm install...'
+        sh 'npm install'
+        echo 'start npm build...'
+        sh 'npm run build'
+        echo 'npm install and build successfully!'
+      }
+    }
     stage('docker build & push image on build docker/build server') {
       steps {
         // docker stop/rm older containers: remove only there are containers found
