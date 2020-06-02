@@ -8,4 +8,3 @@ RUN npm run build
 
 FROM nginx
 COPY --from=node-builder /smc/dist/ /usr/share/nginx/html
-EXPOSE 80
