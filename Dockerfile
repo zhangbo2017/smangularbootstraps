@@ -1,4 +1,4 @@
-FROM node AS node-builder
+FROM node AS nodebuilder
 WORKDIR /smc
 COPY . .
 RUN npm install -g nrm
@@ -7,4 +7,4 @@ RUN npm install
 RUN npm run build
 
 FROM nginx
-COPY --from=node-builder /smc/dist/smc-angular-app /usr/share/nginx/html
+COPY --from=nodebuilder /smc/dist/smc-angular-app /usr/share/nginx/html
