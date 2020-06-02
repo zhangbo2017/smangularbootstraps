@@ -1,3 +1,10 @@
+FROM node as node-builder
+WORKDIR /smc
+COPY . .
+RUN npm install -g nrm
+RUN nrm use npmMirror
+RUN npm install
+RUN npm run build
 
 FROM nginx
-COPY dist/smc/ /usr/share/nginx/html
+COPY --from=node-builder /smc/dist/fsdms-angular-app /usr/share/nginx/html
