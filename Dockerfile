@@ -1,6 +1,6 @@
 FROM node as node-builder
 WORKDIR /smc
-COPY . .
+COPY . /smc/
 RUN npm install -g nrm
 RUN nrm use npmMirror
 RUN npm install
