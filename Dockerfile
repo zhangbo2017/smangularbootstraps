@@ -7,4 +7,4 @@ RUN npm install
 RUN npm run build
 
 FROM nginx
-COPY --from=node-builder /smc/dist/fsdms-angular-app /usr/share/nginx/html
+COPY --from=node-builder /smc/dist/smc-angular-app /usr/share/nginx/html
