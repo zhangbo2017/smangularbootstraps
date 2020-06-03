@@ -4,15 +4,7 @@ pipeline {
     DOCKERHUBNAME = "920018225"
   }
   stages {
-    stage('prepare git file'){
-      steps{
-        sh '''
-          if [ ! -d "/smc/" ];then mkdir /smc fi
-          cp /var/jenkins_home/workspace/smcangularservice /smc
-          '''
-      }
-    }
-    
+ 
     stage('docker build & push image on build docker/build server') {
       steps {
         // docker stop/rm older containers: remove only there are containers found
