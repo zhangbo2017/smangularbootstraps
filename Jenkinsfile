@@ -77,7 +77,7 @@ pipeline {
         // sh 'docker pull ${DOCKERHUBNAME}/smc-angular-nginx'
 
         // docker run images
-        sh 'docker run -d -p 80:4200 --name smc-angular-app ${DOCKERHUBNAME}/smc-angular-nginx'
+        sh 'docker run -d -p 4200:80 --name smc-angular-app ${DOCKERHUBNAME}/smc-angular-nginx'
       }
     }
 
